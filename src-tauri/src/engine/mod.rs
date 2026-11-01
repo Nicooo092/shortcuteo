@@ -7,6 +7,11 @@ mod registry;
 mod template;
 mod value;
 
+#[cfg(test)]
+mod interpreter_tests;
+#[cfg(test)]
+pub mod testing;
+
 use std::sync::Arc;
 use std::time::Duration;
 
