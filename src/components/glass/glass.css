@@ -1,0 +1,92 @@
+.glass {
+  position: relative;
+  border: 1px solid var(--g-border);
+  background: var(--g-bg);
+  box-shadow: var(--g-highlight);
+  backdrop-filter: blur(var(--g-blur)) saturate(var(--g-saturate));
+}
+
+.glass--thin {
+  --g-blur: var(--glass-thin-blur);
+  --g-saturate: var(--glass-thin-saturate);
+  --g-bg: var(--glass-thin-bg);
+  --g-border: var(--glass-thin-border);
+  --g-highlight: var(--glass-thin-highlight);
+}
+
+.glass--regular {
+  --g-blur: var(--glass-regular-blur);
+  --g-saturate: var(--glass-regular-saturate);
+  --g-bg: var(--glass-regular-bg);
+  --g-border: var(--glass-regular-border);
+  --g-highlight: var(--glass-regular-highlight);
+}
+
+.glass--thick {
+  --g-blur: var(--glass-thick-blur);
+  --g-saturate: var(--glass-thick-saturate);
+  --g-bg: var(--glass-thick-bg);
+  --g-border: var(--glass-thick-border);
+  --g-highlight: var(--glass-thick-highlight);
+}
+
+/* chromium only: the svg filter bends what sits behind the edges */
+.glass--refract {
+  backdrop-filter: url(#sc-refract) blur(var(--g-blur)) saturate(var(--g-saturate));
+}
+
+.glass--refract::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    120px circle at var(--mx, 30%) var(--my, -20%),
+    rgba(255, 255, 255, 0.22),
+    transparent 70%
+  );
+  opacity: 0.9;
+  transition: opacity 200ms ease;
+}
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  /* lets mica tint through while keeping text contrast */
+  background: color-mix(in srgb, var(--night) 72%, transparent);
+}
+
+.ambient__blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  animation: drift var(--dur) ease-in-out infinite alternate;
+}
+
+.ambient.is-paused .ambient__blob {
+  animation-play-state: paused;
+  will-change: auto;
+}
+
+.ambient.is-static .ambient__blob {
+  animation: none;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(9vw, -6vh, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-7vw, 8vh, 0) scale(0.92);
+  }
+  100% {
+    transform: translate3d(5vw, 4vh, 0) scale(1.05);
+  }
+}

@@ -1,0 +1,201 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* transparent so mica shows through; the browser dev mode gets a solid night instead */
+body {
+  background: transparent;
+}
+
+html:not(.native) body {
+  background: var(--night);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.secondary {
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.app {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.app-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: var(--s-4);
+  padding: 0 var(--s-4) var(--s-4);
+}
+
+.screen {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  height: 34px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  transition: transform 150ms ease;
+}
+
+.pill-button:active {
+  transform: scale(0.97);
+}
+
+.pill-button.primary {
+  background: var(--accent);
+  color: white;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 6px 20px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.pill-button.danger {
+  background: rgba(255, 90, 110, 0.18);
+  color: #ffb3bd;
+}
+
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-field);
+  color: var(--ink-2);
+  transition:
+    background 120ms ease,
+    color 120ms ease,
+    transform 150ms ease;
+}
+
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+}
+
+.icon-button:active {
+  transform: scale(0.97);
+}
+
+.kbd {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: var(--r-key);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--ink-2);
+}
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
