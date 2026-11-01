@@ -28,6 +28,8 @@ tokio-util = "0.7"
 ts-rs = { version = "12", features = ["indexmap-impl", "serde-json-impl", "chrono-impl"] }
 windows = { version = "0.62", features = ["Win32_Foundation", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
 base64 = "0.22"
+tauri-plugin-notification = "2"
+tauri-plugin-clipboard-manager = "2"
 
 [dev-dependencies]
 tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "test-util"] }
