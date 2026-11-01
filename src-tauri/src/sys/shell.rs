@@ -2,7 +2,6 @@ use windows::core::{HSTRING, PCWSTR};
 use windows::Win32::UI::Shell::ShellExecuteW;
 use windows::Win32::UI::WindowsAndMessaging::SW_SHOWNORMAL;
 
-/// Opens a file, folder, url, protocol or app the way Explorer would.
 pub fn open(target: &str, args: &str) -> Result<(), String> {
     let file = HSTRING::from(target);
     let params = HSTRING::from(args);

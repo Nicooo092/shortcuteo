@@ -6,7 +6,6 @@ use super::workflow::{self, Workflow};
 
 pub const EXTENSION: &str = "shortcuteo";
 
-/// Saved shortcuts, one `.shortcuteo` file per workflow, named after its id.
 pub struct Library {
     dir: PathBuf,
 }
@@ -18,8 +17,7 @@ impl Library {
         Ok(Library { dir })
     }
 
-    /// Every readable shortcut, sorted by name. Broken files are skipped, not fatal: one bad
-    /// import should not hide the whole library.
+    // broken files are skipped: one bad import should not hide the whole library
     pub fn list(&self) -> Vec<Workflow> {
         let mut all: Vec<Workflow> = fs::read_dir(&self.dir)
             .into_iter()

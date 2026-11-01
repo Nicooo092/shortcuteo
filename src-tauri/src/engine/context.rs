@@ -123,7 +123,6 @@ impl RunContext {
         Some(value)
     }
 
-    /// Runs steps in order, each one getting the previous output as input.
     pub(super) fn run_steps<'a>(&'a mut self, steps: &'a [Step], input: Value) -> StepsFuture<'a> {
         Box::pin(async move {
             let mut last = input;

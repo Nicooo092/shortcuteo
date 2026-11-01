@@ -1,8 +1,7 @@
 use super::context::RunContext;
 use super::value::Value;
 
-/// Expands `{{token}}` placeholders. A string that is exactly one token keeps the token's
-/// value as is, so a list stays a list. Unknown tokens are left untouched.
+// a string that is exactly one token keeps its type, so a list stays a list
 pub fn render(s: &str, ctx: &RunContext) -> Value {
     render_with(s, |t| ctx.token(t))
 }

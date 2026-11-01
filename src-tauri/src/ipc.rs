@@ -35,7 +35,7 @@ impl AppState {
     }
 }
 
-/// Something the running shortcut needs the window to show, answered with `host_reply`.
+// answered by the window through host_reply
 #[derive(Debug, Clone, Serialize, TS)]
 #[serde(tag = "kind", rename_all = "camelCase")]
 #[ts(export)]

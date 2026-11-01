@@ -69,8 +69,7 @@ impl Engine {
         self.inner.config.action_timeout
     }
 
-    /// Runs a workflow to completion. The result is the value given to "Stop and output",
-    /// or the last step's output.
+    // result is what "Stop and output" gave, else the last step output
     pub async fn run(
         &self,
         workflow: &Workflow,

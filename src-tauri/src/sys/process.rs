@@ -30,7 +30,6 @@ impl Output {
     }
 }
 
-/// Runs a PowerShell script. `stdin` is readable from the script as `$ShortcutInput`.
 pub async fn powershell(script: &str, stdin: &str) -> Result<Output, String> {
     // -EncodedCommand sidesteps every quoting problem and keeps stdin free for the input
     let full = format!(
@@ -52,7 +51,7 @@ pub async fn powershell(script: &str, stdin: &str) -> Result<Output, String> {
     run(cmd, stdin).await
 }
 
-/// Runs a command line through cmd.exe, so pipes and built-ins like `dir` work.
+// through cmd.exe so pipes and built-ins like dir work
 pub async fn cmd(command_line: &str, stdin: &str) -> Result<Output, String> {
     let mut cmd = Command::new("cmd.exe");
     // chcp keeps output in utf-8 instead of the oem code page
