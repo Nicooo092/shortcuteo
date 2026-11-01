@@ -92,6 +92,8 @@ mod tests {
             description: String::new(),
             icon: "sparkles".to_string(),
             color: Tile::Iris,
+            favorite: false,
+            folder: None,
             actions: Vec::new(),
         }
     }

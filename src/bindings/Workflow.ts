@@ -16,4 +16,8 @@ import type { Tile } from "./Tile";
  * A string made of a single token keeps the referenced value's type; anything else becomes
  * text.
  */
-export type Workflow = { schemaVersion: number, id: string, name: string, description: string, icon: string, color: Tile, actions: Array<Step>, };
+export type Workflow = { schemaVersion: number, id: string, name: string, description: string, icon: string, color: Tile, favorite: boolean, 
+/**
+ * library folder name, purely for organizing
+ */
+folder?: string, actions: Array<Step>, };

@@ -32,6 +32,12 @@ pub struct Workflow {
     #[serde(default = "default_tile")]
     pub color: Tile,
     #[serde(default)]
+    pub favorite: bool,
+    /// library folder name, purely for organizing
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub folder: Option<String>,
+    #[serde(default)]
     pub actions: Vec<Step>,
 }
 
