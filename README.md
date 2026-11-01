@@ -27,16 +27,21 @@ A shortcut is a `.shortcuteo` JSON file. Drop it on the window to import it.
 ```json
 {
   "schemaVersion": 1,
-  "name": "Focus",
+  "id": "clipboard-word-count",
+  "name": "Clipboard word count",
   "actions": [
-    { "id": "system.set_volume", "params": { "level": 20 } },
-    { "id": "scripting.wait", "params": { "seconds": 1500 } },
-    { "id": "notification.show", "params": { "title": "Break time" } }
+    { "uuid": "clip", "action": "clipboard.get" },
+    { "uuid": "words", "action": "scripting.count", "params": { "unit": "words" } },
+    {
+      "uuid": "toast",
+      "action": "notification.show",
+      "params": { "title": "Clipboard", "body": "{{output:words}} words" }
+    }
   ]
 }
 ```
 
-The format is not frozen yet and may change before 0.1.
+Each step gets the previous step's output as input, and `{{output:words}}` reuses an earlier result anywhere. More in [`examples/`](examples). The format may still change before 0.1, old files will keep opening.
 
 ## Contributing
 
