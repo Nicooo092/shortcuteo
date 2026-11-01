@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::sync::atomic::{AtomicU64, Ordering};
+use std::sync::atomic::{AtomicU32, Ordering};
 use std::sync::{Arc, Mutex};
 
 use async_trait::async_trait;
@@ -19,8 +19,8 @@ pub struct AppState {
     pub engine: Engine,
     pub library: Library,
     runs: Mutex<HashMap<String, CancellationToken>>,
-    pending: Mutex<HashMap<u64, oneshot::Sender<serde_json::Value>>>,
-    next_request: AtomicU64,
+    pending: Mutex<HashMap<u32, oneshot::Sender<serde_json::Value>>>,
+    next_request: AtomicU32,
 }
 
 impl AppState {
@@ -30,7 +30,7 @@ impl AppState {
             library,
             runs: Mutex::default(),
             pending: Mutex::default(),
-            next_request: AtomicU64::new(1),
+            next_request: AtomicU32::new(1),
         }
     }
 }
@@ -62,7 +62,7 @@ pub enum HostRequest {
 #[serde(rename_all = "camelCase")]
 #[ts(export)]
 pub struct HostRequestEvent {
-    pub id: u64,
+    pub id: u32,
     pub run_id: String,
     pub request: HostRequest,
 }
@@ -231,7 +231,7 @@ pub fn cancel_run(state: State<'_, AppState>, run_id: String) {
 }
 
 #[tauri::command]
-pub fn host_reply(state: State<'_, AppState>, id: u64, answer: serde_json::Value) {
+pub fn host_reply(state: State<'_, AppState>, id: u32, answer: serde_json::Value) {
     if let Some(tx) = state.pending.lock().unwrap().remove(&id) {
         let _ = tx.send(answer);
     }
