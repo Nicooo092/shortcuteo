@@ -262,6 +262,19 @@ pub fn export_shortcut(workflow: Workflow) -> String {
     workflow::to_string(&workflow)
 }
 
+// only shortcut files, so a compromised page cannot read arbitrary files through this
+#[tauri::command]
+pub fn read_shortcut_file(path: std::path::PathBuf) -> Result<String, String> {
+    if path.extension().and_then(|e| e.to_str()) != Some(crate::storage::library::EXTENSION) {
+        return Err("not a .shortcuteo file".to_string());
+    }
+    let meta = std::fs::metadata(&path).map_err(|e| e.to_string())?;
+    if meta.len() > 4 * 1024 * 1024 {
+        return Err("file is too large to be a shortcut".to_string());
+    }
+    std::fs::read_to_string(&path).map_err(|e| e.to_string())
+}
+
 #[tauri::command]
 pub fn on_battery() -> bool {
     crate::sys::power::on_battery()

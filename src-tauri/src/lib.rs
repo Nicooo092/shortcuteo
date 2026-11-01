@@ -36,6 +36,7 @@ pub fn run() {
             ipc::parse_shortcut,
             ipc::export_shortcut,
             ipc::on_battery,
+            ipc::read_shortcut_file,
         ])
         .run(tauri::generate_context!())
         .expect("failed to start tauri runtime");
