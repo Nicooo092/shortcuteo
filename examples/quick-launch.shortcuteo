@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "quick-launch",
+  "name": "Quick launch",
+  "description": "Pick something to open from a menu.",
+  "icon": "rocket",
+  "color": "lagoon",
+  "actions": [
+    {
+      "uuid": "menu",
+      "action": "control.menu",
+      "params": { "prompt": "Open" },
+      "cases": [
+        {
+          "label": "Notes",
+          "body": [{ "uuid": "notes", "action": "navigation.open_app", "params": { "app": "notepad" } }]
+        },
+        {
+          "label": "Calculator",
+          "body": [{ "uuid": "calc", "action": "navigation.open_app", "params": { "app": "calc" } }]
+        },
+        {
+          "label": "Display settings",
+          "body": [
+            { "uuid": "display", "action": "web.open_url", "params": { "url": "ms-settings:display" } }
+          ]
+        }
+      ]
+    }
+  ]
+}

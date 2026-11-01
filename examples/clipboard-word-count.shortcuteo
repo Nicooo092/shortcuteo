@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "clipboard-word-count",
+  "name": "Clipboard word count",
+  "description": "Counts the words of the copied text.",
+  "icon": "hash",
+  "color": "iris",
+  "actions": [
+    { "uuid": "clip", "action": "clipboard.get" },
+    { "uuid": "words", "action": "scripting.count", "params": { "unit": "words" } },
+    {
+      "uuid": "toast",
+      "action": "notification.show",
+      "params": { "title": "Clipboard", "body": "{{output:words}} words" }
+    }
+  ]
+}
