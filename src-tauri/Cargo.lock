@@ -3329,6 +3329,7 @@ dependencies = [
  "tokio",
  "tokio-util",
  "ts-rs",
+ "window-vibrancy",
  "windows",
 ]
 

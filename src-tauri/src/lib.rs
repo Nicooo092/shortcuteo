@@ -17,6 +17,12 @@ pub fn run() {
             let dir = app.path().app_data_dir()?.join("shortcuts");
             let engine = Engine::new(Registry::builtin(), EngineConfig::default());
             app.manage(ipc::AppState::new(engine, Library::open(dir)?));
+            if let Some(window) = app.get_webview_window("main") {
+                // mica needs windows 11, acrylic covers windows 10
+                if window_vibrancy::apply_mica(&window, Some(true)).is_err() {
+                    let _ = window_vibrancy::apply_acrylic(&window, Some((10, 10, 24, 200)));
+                }
+            }
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
@@ -29,6 +35,7 @@ pub fn run() {
             ipc::delete_shortcut,
             ipc::parse_shortcut,
             ipc::export_shortcut,
+            ipc::on_battery,
         ])
         .run(tauri::generate_context!())
         .expect("failed to start tauri runtime");

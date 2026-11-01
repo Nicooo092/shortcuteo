@@ -261,3 +261,8 @@ pub fn parse_shortcut(text: String) -> Result<Workflow, String> {
 pub fn export_shortcut(workflow: Workflow) -> String {
     workflow::to_string(&workflow)
 }
+
+#[tauri::command]
+pub fn on_battery() -> bool {
+    crate::sys::power::on_battery()
+}
