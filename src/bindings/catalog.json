@@ -1,0 +1,1663 @@
+[
+  {
+    "id": "clipboard.copy",
+    "category": "clipboard",
+    "tile": "iris",
+    "icon": "clipboard-copy",
+    "name": {
+      "en": "Copy to clipboard",
+      "fr": "Copier dans le presse-papiers"
+    },
+    "description": {
+      "en": "Puts the content on the clipboard as text.",
+      "fr": "Place le contenu dans le presse-papiers, en texte."
+    },
+    "sentence": {
+      "en": "Copy {content} to clipboard",
+      "fr": "Copier {content}"
+    },
+    "params": [
+      {
+        "key": "content",
+        "label": {
+          "en": "Content",
+          "fr": "Contenu"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "clipboard.get",
+    "category": "clipboard",
+    "tile": "iris",
+    "icon": "clipboard-paste",
+    "name": {
+      "en": "Get clipboard",
+      "fr": "Obtenir le presse-papiers"
+    },
+    "description": {
+      "en": "Outputs the text on the clipboard.",
+      "fr": "Génère le texte du presse-papiers."
+    },
+    "sentence": {
+      "en": "Get clipboard",
+      "fr": "Obtenir le presse-papiers"
+    },
+    "params": [],
+    "input": "nothing",
+    "output": "text",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "control.if",
+    "category": "controlFlow",
+    "tile": "slate",
+    "icon": "split",
+    "name": {
+      "en": "If",
+      "fr": "Si"
+    },
+    "description": {
+      "en": "Runs the first branch when the condition holds, the Otherwise branch when not.",
+      "fr": "Exécute la première branche si la condition est vraie, sinon la branche Sinon."
+    },
+    "sentence": {
+      "en": "If {input} {op} {operand}",
+      "fr": "Si {input} {op} {operand}"
+    },
+    "params": [
+      {
+        "key": "input",
+        "label": {
+          "en": "Input",
+          "fr": "Entrée"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      },
+      {
+        "key": "op",
+        "label": {
+          "en": "Condition",
+          "fr": "Condition"
+        },
+        "kind": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "is",
+              "label": {
+                "en": "is",
+                "fr": "est"
+              }
+            },
+            {
+              "value": "is_not",
+              "label": {
+                "en": "is not",
+                "fr": "n'est pas"
+              }
+            },
+            {
+              "value": "contains",
+              "label": {
+                "en": "contains",
+                "fr": "contient"
+              }
+            },
+            {
+              "value": "not_contains",
+              "label": {
+                "en": "does not contain",
+                "fr": "ne contient pas"
+              }
+            },
+            {
+              "value": "begins_with",
+              "label": {
+                "en": "begins with",
+                "fr": "commence par"
+              }
+            },
+            {
+              "value": "ends_with",
+              "label": {
+                "en": "ends with",
+                "fr": "finit par"
+              }
+            },
+            {
+              "value": "gt",
+              "label": {
+                "en": "is greater than",
+                "fr": "est supérieur à"
+              }
+            },
+            {
+              "value": "lt",
+              "label": {
+                "en": "is less than",
+                "fr": "est inférieur à"
+              }
+            },
+            {
+              "value": "has_value",
+              "label": {
+                "en": "has any value",
+                "fr": "a une valeur"
+              }
+            },
+            {
+              "value": "no_value",
+              "label": {
+                "en": "does not have any value",
+                "fr": "n'a aucune valeur"
+              }
+            }
+          ]
+        },
+        "default": "has_value",
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "operand",
+        "label": {
+          "en": "Value",
+          "fr": "Valeur"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": "if",
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "control.menu",
+    "category": "controlFlow",
+    "tile": "slate",
+    "icon": "list",
+    "name": {
+      "en": "Choose from menu",
+      "fr": "Choisir dans le menu"
+    },
+    "description": {
+      "en": "Shows a menu and runs the actions under the chosen entry.",
+      "fr": "Affiche un menu et exécute les actions sous l'entrée choisie."
+    },
+    "sentence": {
+      "en": "Choose from menu {prompt}",
+      "fr": "Choisir dans le menu {prompt}"
+    },
+    "params": [
+      {
+        "key": "prompt",
+        "label": {
+          "en": "Prompt",
+          "fr": "Question"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": "menu",
+    "sensitive": false,
+    "unbounded": true,
+    "experimental": false
+  },
+  {
+    "id": "control.repeat",
+    "category": "controlFlow",
+    "tile": "slate",
+    "icon": "repeat",
+    "name": {
+      "en": "Repeat",
+      "fr": "Répéter"
+    },
+    "description": {
+      "en": "Runs the inner actions a number of times and outputs the list of their results. {{index}} holds the current turn.",
+      "fr": "Exécute les actions internes un certain nombre de fois et génère la liste de leurs résultats. {{index}} contient le tour en cours."
+    },
+    "sentence": {
+      "en": "Repeat {count} times",
+      "fr": "Répéter {count} fois"
+    },
+    "params": [
+      {
+        "key": "count",
+        "label": {
+          "en": "Times",
+          "fr": "Fois"
+        },
+        "kind": {
+          "kind": "number",
+          "min": 0.0,
+          "max": 100000.0,
+          "unit": null
+        },
+        "default": 2,
+        "optional": false,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "list",
+    "block": "repeat",
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "control.repeat_each",
+    "category": "controlFlow",
+    "tile": "slate",
+    "icon": "list-restart",
+    "name": {
+      "en": "Repeat with each",
+      "fr": "Répéter pour chaque élément"
+    },
+    "description": {
+      "en": "Runs the inner actions once per item. {{item}} and {{index}} hold the current one.",
+      "fr": "Exécute les actions internes une fois par élément. {{item}} et {{index}} contiennent l'élément en cours."
+    },
+    "sentence": {
+      "en": "Repeat with each item in {items}",
+      "fr": "Répéter pour chaque élément de {items}"
+    },
+    "params": [
+      {
+        "key": "items",
+        "label": {
+          "en": "Items",
+          "fr": "Éléments"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "list",
+    "output": "list",
+    "block": "repeatEach",
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "navigation.open_app",
+    "category": "navigation",
+    "tile": "lagoon",
+    "icon": "app-window",
+    "name": {
+      "en": "Open app",
+      "fr": "Ouvrir une app"
+    },
+    "description": {
+      "en": "Starts an app from its name (notepad, calc), its path, or shell:AppsFolder\\<id> for Store apps.",
+      "fr": "Lance une app par son nom (notepad, calc), son chemin, ou shell:AppsFolder\\<id> pour les apps du Store."
+    },
+    "sentence": {
+      "en": "Open {app}",
+      "fr": "Ouvrir {app}"
+    },
+    "params": [
+      {
+        "key": "app",
+        "label": {
+          "en": "App",
+          "fr": "App"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "args",
+        "label": {
+          "en": "Arguments",
+          "fr": "Arguments"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": false
+      }
+    ],
+    "input": "nothing",
+    "output": "nothing",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "notification.show",
+    "category": "clipboard",
+    "tile": "iris",
+    "icon": "bell",
+    "name": {
+      "en": "Show notification",
+      "fr": "Afficher une notification"
+    },
+    "description": {
+      "en": "Shows a Windows notification.",
+      "fr": "Affiche une notification Windows."
+    },
+    "sentence": {
+      "en": "Show notification {body}",
+      "fr": "Afficher la notification {body}"
+    },
+    "params": [
+      {
+        "key": "body",
+        "label": {
+          "en": "Body",
+          "fr": "Texte"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": true
+      },
+      {
+        "key": "title",
+        "label": {
+          "en": "Title",
+          "fr": "Titre"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": "Shortcuteo",
+        "optional": false,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.ask_input",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "text-cursor-input",
+    "name": {
+      "en": "Ask for input",
+      "fr": "Demander une entrée"
+    },
+    "description": {
+      "en": "Asks the user to type something. Dismissing the prompt stops the shortcut.",
+      "fr": "Demande à l'utilisateur de saisir quelque chose. Fermer la demande arrête le raccourci."
+    },
+    "sentence": {
+      "en": "Ask for {prompt}",
+      "fr": "Demander {prompt}"
+    },
+    "params": [
+      {
+        "key": "prompt",
+        "label": {
+          "en": "Prompt",
+          "fr": "Question"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": "",
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "default",
+        "label": {
+          "en": "Default answer",
+          "fr": "Réponse par défaut"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": false
+      }
+    ],
+    "input": "nothing",
+    "output": "text",
+    "block": null,
+    "sensitive": false,
+    "unbounded": true,
+    "experimental": false
+  },
+  {
+    "id": "scripting.comment",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "message-square",
+    "name": {
+      "en": "Comment",
+      "fr": "Commentaire"
+    },
+    "description": {
+      "en": "A note for whoever reads the shortcut. Does nothing and lets the previous output through.",
+      "fr": "Une note pour qui lit le raccourci. Ne fait rien et laisse passer la sortie précédente."
+    },
+    "sentence": {
+      "en": "{text}",
+      "fr": "{text}"
+    },
+    "params": [
+      {
+        "key": "text",
+        "label": {
+          "en": "Text",
+          "fr": "Texte"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": true
+        },
+        "default": "",
+        "optional": false,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.count",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "hash",
+    "name": {
+      "en": "Count",
+      "fr": "Compter"
+    },
+    "description": {
+      "en": "Counts the items, characters, words or lines of the input.",
+      "fr": "Compte les éléments, caractères, mots ou lignes de l'entrée."
+    },
+    "sentence": {
+      "en": "Count {unit} in {content}",
+      "fr": "Compter les {unit} dans {content}"
+    },
+    "params": [
+      {
+        "key": "unit",
+        "label": {
+          "en": "Unit",
+          "fr": "Unité"
+        },
+        "kind": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "items",
+              "label": {
+                "en": "items",
+                "fr": "éléments"
+              }
+            },
+            {
+              "value": "chars",
+              "label": {
+                "en": "characters",
+                "fr": "caractères"
+              }
+            },
+            {
+              "value": "words",
+              "label": {
+                "en": "words",
+                "fr": "mots"
+              }
+            },
+            {
+              "value": "lines",
+              "label": {
+                "en": "lines",
+                "fr": "lignes"
+              }
+            }
+          ]
+        },
+        "default": "items",
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "content",
+        "label": {
+          "en": "Content",
+          "fr": "Contenu"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "number",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.get_shortcuts",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "library",
+    "name": {
+      "en": "Get my shortcuts",
+      "fr": "Obtenir mes raccourcis"
+    },
+    "description": {
+      "en": "Outputs the names of all saved shortcuts.",
+      "fr": "Génère le nom de tous les raccourcis enregistrés."
+    },
+    "sentence": {
+      "en": "Get my shortcuts",
+      "fr": "Obtenir mes raccourcis"
+    },
+    "params": [],
+    "input": "nothing",
+    "output": "list",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.nothing",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "circle-slash",
+    "name": {
+      "en": "Nothing",
+      "fr": "Rien"
+    },
+    "description": {
+      "en": "Outputs nothing, so the next action starts without input.",
+      "fr": "Ne génère rien, l'action suivante démarre sans entrée."
+    },
+    "sentence": {
+      "en": "Nothing",
+      "fr": "Rien"
+    },
+    "params": [],
+    "input": "nothing",
+    "output": "nothing",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.output",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "log-out",
+    "name": {
+      "en": "Stop and output",
+      "fr": "Arrêter et générer"
+    },
+    "description": {
+      "en": "Ends the shortcut and hands the value back to whoever ran it.",
+      "fr": "Termine le raccourci et renvoie la valeur à celui qui l'a lancé."
+    },
+    "sentence": {
+      "en": "Stop and output {value}",
+      "fr": "Arrêter et générer {value}"
+    },
+    "params": [
+      {
+        "key": "value",
+        "label": {
+          "en": "Value",
+          "fr": "Valeur"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.run_shortcut",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "workflow",
+    "name": {
+      "en": "Run shortcut",
+      "fr": "Exécuter un raccourci"
+    },
+    "description": {
+      "en": "Runs another shortcut and outputs what it outputs.",
+      "fr": "Exécute un autre raccourci et génère sa sortie."
+    },
+    "sentence": {
+      "en": "Run {name} with {input}",
+      "fr": "Exécuter {name} avec {input}"
+    },
+    "params": [
+      {
+        "key": "name",
+        "label": {
+          "en": "Shortcut",
+          "fr": "Raccourci"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "input",
+        "label": {
+          "en": "Input",
+          "fr": "Entrée"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": true,
+    "experimental": false
+  },
+  {
+    "id": "scripting.show_alert",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "triangle-alert",
+    "name": {
+      "en": "Show alert",
+      "fr": "Afficher l'alerte"
+    },
+    "description": {
+      "en": "Shows a message with OK and Cancel. Cancel stops the shortcut.",
+      "fr": "Affiche un message avec OK et Annuler. Annuler arrête le raccourci."
+    },
+    "sentence": {
+      "en": "Show alert {message}",
+      "fr": "Afficher l'alerte {message}"
+    },
+    "params": [
+      {
+        "key": "message",
+        "label": {
+          "en": "Message",
+          "fr": "Message"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": true
+      },
+      {
+        "key": "title",
+        "label": {
+          "en": "Title",
+          "fr": "Titre"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": true,
+    "experimental": false
+  },
+  {
+    "id": "scripting.show_result",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "panel-top-open",
+    "name": {
+      "en": "Show content",
+      "fr": "Afficher le contenu"
+    },
+    "description": {
+      "en": "Opens a preview window with the content.",
+      "fr": "Ouvre une fenêtre d'aperçu avec le contenu."
+    },
+    "sentence": {
+      "en": "Show {content}",
+      "fr": "Afficher {content}"
+    },
+    "params": [
+      {
+        "key": "content",
+        "label": {
+          "en": "Content",
+          "fr": "Contenu"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.stop",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "octagon-x",
+    "name": {
+      "en": "Stop this shortcut",
+      "fr": "Arrêter ce raccourci"
+    },
+    "description": {
+      "en": "Ends the shortcut here.",
+      "fr": "Termine le raccourci ici."
+    },
+    "sentence": {
+      "en": "Stop this shortcut",
+      "fr": "Arrêter ce raccourci"
+    },
+    "params": [],
+    "input": "nothing",
+    "output": "nothing",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "scripting.wait",
+    "category": "scripting",
+    "tile": "slate",
+    "icon": "hourglass",
+    "name": {
+      "en": "Wait",
+      "fr": "Attendre"
+    },
+    "description": {
+      "en": "Pauses the shortcut.",
+      "fr": "Met le raccourci en pause."
+    },
+    "sentence": {
+      "en": "Wait {seconds}",
+      "fr": "Attendre {seconds}"
+    },
+    "params": [
+      {
+        "key": "seconds",
+        "label": {
+          "en": "Duration",
+          "fr": "Durée"
+        },
+        "kind": {
+          "kind": "number",
+          "min": 0.0,
+          "max": 86400.0,
+          "unit": "s"
+        },
+        "default": 1,
+        "optional": false,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": true,
+    "experimental": false
+  },
+  {
+    "id": "text.change_case",
+    "category": "text",
+    "tile": "iris",
+    "icon": "case-sensitive",
+    "name": {
+      "en": "Change case",
+      "fr": "Modifier la casse"
+    },
+    "description": {
+      "en": "Changes the text to upper case, lower case, title case or sentence case.",
+      "fr": "Passe le texte en majuscules, minuscules, initiales en majuscule ou phrase."
+    },
+    "sentence": {
+      "en": "Change {text} to {case}",
+      "fr": "Passer {text} en {case}"
+    },
+    "params": [
+      {
+        "key": "case",
+        "label": {
+          "en": "Case",
+          "fr": "Casse"
+        },
+        "kind": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "upper",
+              "label": {
+                "en": "UPPERCASE",
+                "fr": "MAJUSCULES"
+              }
+            },
+            {
+              "value": "lower",
+              "label": {
+                "en": "lowercase",
+                "fr": "minuscules"
+              }
+            },
+            {
+              "value": "title",
+              "label": {
+                "en": "Title Case",
+                "fr": "Initiales En Majuscule"
+              }
+            },
+            {
+              "value": "sentence",
+              "label": {
+                "en": "Sentence case",
+                "fr": "Phrase"
+              }
+            }
+          ]
+        },
+        "default": "upper",
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "text",
+        "label": {
+          "en": "Text",
+          "fr": "Texte"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "text",
+    "output": "text",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "text.combine",
+    "category": "text",
+    "tile": "iris",
+    "icon": "merge",
+    "name": {
+      "en": "Combine text",
+      "fr": "Combiner le texte"
+    },
+    "description": {
+      "en": "Joins the items of a list into one text.",
+      "fr": "Assemble les éléments d'une liste en un seul texte."
+    },
+    "sentence": {
+      "en": "Combine {items} with {separator}",
+      "fr": "Combiner {items} avec {separator}"
+    },
+    "params": [
+      {
+        "key": "separator",
+        "label": {
+          "en": "Separator",
+          "fr": "Séparateur"
+        },
+        "kind": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "newline",
+              "label": {
+                "en": "new lines",
+                "fr": "retours à la ligne"
+              }
+            },
+            {
+              "value": "space",
+              "label": {
+                "en": "spaces",
+                "fr": "espaces"
+              }
+            },
+            {
+              "value": "comma",
+              "label": {
+                "en": "commas",
+                "fr": "virgules"
+              }
+            },
+            {
+              "value": "chars",
+              "label": {
+                "en": "every character",
+                "fr": "chaque caractère"
+              }
+            },
+            {
+              "value": "custom",
+              "label": {
+                "en": "custom",
+                "fr": "personnalisé"
+              }
+            }
+          ]
+        },
+        "default": "newline",
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "custom",
+        "label": {
+          "en": "Custom separator",
+          "fr": "Séparateur personnalisé"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": false
+      },
+      {
+        "key": "items",
+        "label": {
+          "en": "Items",
+          "fr": "Éléments"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "list",
+    "output": "text",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "text.replace",
+    "category": "text",
+    "tile": "iris",
+    "icon": "replace",
+    "name": {
+      "en": "Replace text",
+      "fr": "Remplacer le texte"
+    },
+    "description": {
+      "en": "Replaces every occurrence of a text by another.",
+      "fr": "Remplace chaque occurrence d'un texte par un autre."
+    },
+    "sentence": {
+      "en": "Replace {find} with {with} in {text}",
+      "fr": "Remplacer {find} par {with} dans {text}"
+    },
+    "params": [
+      {
+        "key": "find",
+        "label": {
+          "en": "Find",
+          "fr": "Rechercher"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "with",
+        "label": {
+          "en": "Replace with",
+          "fr": "Remplacer par"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": "",
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "case_sensitive",
+        "label": {
+          "en": "Case sensitive",
+          "fr": "Respecter la casse"
+        },
+        "kind": {
+          "kind": "bool"
+        },
+        "default": true,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "text",
+        "label": {
+          "en": "Text",
+          "fr": "Texte"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "text",
+    "output": "text",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "text.split",
+    "category": "text",
+    "tile": "iris",
+    "icon": "split",
+    "name": {
+      "en": "Split text",
+      "fr": "Scinder le texte"
+    },
+    "description": {
+      "en": "Cuts the text into a list. \"Every character\" splits it letter by letter.",
+      "fr": "Découpe le texte en liste. « Chaque caractère » le découpe lettre par lettre."
+    },
+    "sentence": {
+      "en": "Split {text} by {separator}",
+      "fr": "Scinder {text} par {separator}"
+    },
+    "params": [
+      {
+        "key": "separator",
+        "label": {
+          "en": "Separator",
+          "fr": "Séparateur"
+        },
+        "kind": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "newline",
+              "label": {
+                "en": "new lines",
+                "fr": "retours à la ligne"
+              }
+            },
+            {
+              "value": "space",
+              "label": {
+                "en": "spaces",
+                "fr": "espaces"
+              }
+            },
+            {
+              "value": "comma",
+              "label": {
+                "en": "commas",
+                "fr": "virgules"
+              }
+            },
+            {
+              "value": "chars",
+              "label": {
+                "en": "every character",
+                "fr": "chaque caractère"
+              }
+            },
+            {
+              "value": "custom",
+              "label": {
+                "en": "custom",
+                "fr": "personnalisé"
+              }
+            }
+          ]
+        },
+        "default": "newline",
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "custom",
+        "label": {
+          "en": "Custom separator",
+          "fr": "Séparateur personnalisé"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": false
+      },
+      {
+        "key": "text",
+        "label": {
+          "en": "Text",
+          "fr": "Texte"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "text",
+    "output": "list",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "text.text",
+    "category": "text",
+    "tile": "iris",
+    "icon": "type",
+    "name": {
+      "en": "Text",
+      "fr": "Texte"
+    },
+    "description": {
+      "en": "Outputs the text you type, with variables filled in.",
+      "fr": "Génère le texte saisi, variables remplacées."
+    },
+    "sentence": {
+      "en": "{text}",
+      "fr": "{text}"
+    },
+    "params": [
+      {
+        "key": "text",
+        "label": {
+          "en": "Text",
+          "fr": "Texte"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": true
+        },
+        "default": "",
+        "optional": false,
+        "fromInput": false
+      }
+    ],
+    "input": "nothing",
+    "output": "text",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "text.trim",
+    "category": "text",
+    "tile": "iris",
+    "icon": "remove-formatting",
+    "name": {
+      "en": "Trim whitespace",
+      "fr": "Supprimer les espaces"
+    },
+    "description": {
+      "en": "Removes spaces and line breaks at the start and end of the text.",
+      "fr": "Retire les espaces et retours à la ligne au début et à la fin du texte."
+    },
+    "sentence": {
+      "en": "Trim {text}",
+      "fr": "Nettoyer {text}"
+    },
+    "params": [
+      {
+        "key": "text",
+        "label": {
+          "en": "Text",
+          "fr": "Texte"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "text",
+    "output": "text",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "variables.add",
+    "category": "variables",
+    "tile": "orchid",
+    "icon": "list-plus",
+    "name": {
+      "en": "Add to variable",
+      "fr": "Ajouter à la variable"
+    },
+    "description": {
+      "en": "Appends a value to a variable, turning it into a list.",
+      "fr": "Ajoute une valeur à une variable, qui devient une liste."
+    },
+    "sentence": {
+      "en": "Add {value} to {name}",
+      "fr": "Ajouter {value} à {name}"
+    },
+    "params": [
+      {
+        "key": "name",
+        "label": {
+          "en": "Variable",
+          "fr": "Variable"
+        },
+        "kind": {
+          "kind": "variable"
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "value",
+        "label": {
+          "en": "Value",
+          "fr": "Valeur"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "list",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "variables.get",
+    "category": "variables",
+    "tile": "orchid",
+    "icon": "variable",
+    "name": {
+      "en": "Get variable",
+      "fr": "Obtenir la variable"
+    },
+    "description": {
+      "en": "Outputs the value stored under a name, or nothing if it was never set.",
+      "fr": "Génère la valeur rangée sous un nom, ou rien si elle n'a jamais été définie."
+    },
+    "sentence": {
+      "en": "Get variable {name}",
+      "fr": "Obtenir {name}"
+    },
+    "params": [
+      {
+        "key": "name",
+        "label": {
+          "en": "Variable",
+          "fr": "Variable"
+        },
+        "kind": {
+          "kind": "variable"
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      }
+    ],
+    "input": "nothing",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "variables.set",
+    "category": "variables",
+    "tile": "orchid",
+    "icon": "variable",
+    "name": {
+      "en": "Set variable",
+      "fr": "Définir la variable"
+    },
+    "description": {
+      "en": "Stores a value under a name. Read it back with {{var:name}}.",
+      "fr": "Range une valeur sous un nom. Relisez-la avec {{var:nom}}."
+    },
+    "sentence": {
+      "en": "Set variable {name} to {value}",
+      "fr": "Définir {name} sur {value}"
+    },
+    "params": [
+      {
+        "key": "name",
+        "label": {
+          "en": "Variable",
+          "fr": "Variable"
+        },
+        "kind": {
+          "kind": "variable"
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "value",
+        "label": {
+          "en": "Value",
+          "fr": "Valeur"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "web.open_url",
+    "category": "web",
+    "tile": "glacier",
+    "icon": "globe",
+    "name": {
+      "en": "Open URL",
+      "fr": "Ouvrir l'URL"
+    },
+    "description": {
+      "en": "Opens a web page or a protocol link (mailto:, ms-settings:, spotify:...) in its default app.",
+      "fr": "Ouvre une page web ou un lien de protocole (mailto:, ms-settings:, spotify:...) dans son app par défaut."
+    },
+    "sentence": {
+      "en": "Open {url}",
+      "fr": "Ouvrir {url}"
+    },
+    "params": [
+      {
+        "key": "url",
+        "label": {
+          "en": "URL",
+          "fr": "URL"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": true
+      }
+    ],
+    "input": "url",
+    "output": "url",
+    "block": null,
+    "sensitive": false,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "windows.command",
+    "category": "windows",
+    "tile": "slate",
+    "icon": "square-terminal",
+    "name": {
+      "en": "Run command",
+      "fr": "Exécuter une commande"
+    },
+    "description": {
+      "en": "Runs a command line through cmd.exe and outputs what it prints. The input is sent on stdin.",
+      "fr": "Exécute une ligne de commande avec cmd.exe et génère ce qu'elle affiche. L'entrée est envoyée sur stdin."
+    },
+    "sentence": {
+      "en": "Run {command}",
+      "fr": "Exécuter {command}"
+    },
+    "params": [
+      {
+        "key": "command",
+        "label": {
+          "en": "Command",
+          "fr": "Commande"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": false
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "input",
+        "label": {
+          "en": "Input",
+          "fr": "Entrée"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      }
+    ],
+    "input": "any",
+    "output": "text",
+    "block": null,
+    "sensitive": true,
+    "unbounded": false,
+    "experimental": false
+  },
+  {
+    "id": "windows.powershell",
+    "category": "windows",
+    "tile": "slate",
+    "icon": "terminal",
+    "name": {
+      "en": "Run PowerShell script",
+      "fr": "Exécuter un script PowerShell"
+    },
+    "description": {
+      "en": "Runs a script with Windows PowerShell and outputs what it prints. The input is available as $ShortcutInput.",
+      "fr": "Exécute un script avec Windows PowerShell et génère ce qu'il affiche. L'entrée est disponible dans $ShortcutInput."
+    },
+    "sentence": {
+      "en": "Run PowerShell {script}",
+      "fr": "Exécuter PowerShell {script}"
+    },
+    "params": [
+      {
+        "key": "script",
+        "label": {
+          "en": "Script",
+          "fr": "Script"
+        },
+        "kind": {
+          "kind": "text",
+          "multiline": true
+        },
+        "default": null,
+        "optional": false,
+        "fromInput": false
+      },
+      {
+        "key": "input",
+        "label": {
+          "en": "Input",
+          "fr": "Entrée"
+        },
+        "kind": {
+          "kind": "any"
+        },
+        "default": null,
+        "optional": true,
+        "fromInput": true
+      },
+      {
+        "key": "json",
+        "label": {
+          "en": "Parse output as JSON",
+          "fr": "Lire la sortie en JSON"
+        },
+        "kind": {
+          "kind": "bool"
+        },
+        "default": false,
+        "optional": false,
+        "fromInput": false
+      }
+    ],
+    "input": "any",
+    "output": "any",
+    "block": null,
+    "sensitive": true,
+    "unbounded": false,
+    "experimental": false
+  }
+]

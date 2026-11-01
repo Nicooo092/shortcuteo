@@ -73,6 +73,16 @@ mod tests {
         assert!(checked > 0);
     }
 
+    // lets the front run in a plain browser (npm run dev) with the real catalog
+    #[test]
+    fn export_catalog_snapshot() {
+        let metas = Registry::builtin().metas();
+        let json = serde_json::to_string_pretty(&metas).unwrap() + "\n";
+        let path =
+            std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../src/bindings/catalog.json");
+        std::fs::write(path, json).unwrap();
+    }
+
     fn walk(steps: &[Step], f: &mut impl FnMut(&Step)) {
         for s in steps {
             f(s);
