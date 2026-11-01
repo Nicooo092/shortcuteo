@@ -1,0 +1,439 @@
+.editor__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-1) var(--s-4);
+}
+
+.editor__name {
+  flex: 1;
+  min-width: 0;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  border: 0;
+  background: none;
+  outline: none;
+  padding: var(--s-1) var(--s-2);
+  border-radius: var(--r-field);
+}
+
+.editor__name:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.editor__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: var(--s-4);
+}
+
+.editor__canvas {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: var(--s-1) var(--s-2) var(--s-7);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.editor__empty {
+  flex: 0;
+  padding: var(--s-7) 0 var(--s-5);
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.block-row {
+  position: relative;
+}
+
+/* each row is its own stacking context (transform, backdrop-filter), lift the one with a popover */
+.block-row:has(.pill.is-open) {
+  z-index: 30;
+}
+
+/* thin connector so the stack reads as one flow */
+.block-row + .block-row::before,
+.marker + .block-row::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: -9px;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 52px;
+  padding: var(--s-2) var(--s-2) var(--s-2) var(--s-1);
+  border-radius: var(--r-block);
+  cursor: default;
+}
+
+.block::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow:
+    0 0 0 1.5px var(--accent),
+    0 0 24px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.block.is-selected::after {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.block.is-active::after {
+  opacity: 1;
+  animation: none;
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 0 32px color-mix(in srgb, var(--accent) 80%, transparent);
+}
+
+.block.is-done {
+  border-color: color-mix(in srgb, var(--success) 45%, transparent);
+}
+
+.block.is-failed {
+  border-color: var(--danger);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.block__grip {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 32px;
+  color: var(--ink-3);
+  cursor: grab;
+  touch-action: none;
+}
+
+.block__grip:active {
+  cursor: grabbing;
+}
+
+.block__sentence {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  font-weight: 600;
+}
+
+.block__tools {
+  display: flex;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.block:hover .block__tools,
+.block:focus-within .block__tools,
+.block.is-selected .block__tools {
+  opacity: 1;
+}
+
+.block__tools .icon-button {
+  width: 28px;
+  height: 28px;
+}
+
+.pill-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 360px;
+  min-height: 26px;
+  padding: 2px 10px;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: color-mix(in srgb, var(--accent) 35%, white);
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    background 120ms ease,
+    transform 150ms ease;
+}
+
+.pill:hover,
+.pill.is-open {
+  background: color-mix(in srgb, var(--accent) 34%, transparent);
+}
+
+.pill:active {
+  transform: scale(0.97);
+}
+
+.pill__placeholder {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.pill__placeholder.is-magic {
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.pill-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  transform-origin: top left;
+}
+
+/* nested inside a blurred block, its own backdrop-filter cannot see past it: needs a dense fill */
+.pill-pop__panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)),
+    rgba(16, 16, 36, 0.94);
+  width: 320px;
+  padding: var(--s-3);
+  border-radius: var(--r-block);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.pill-pop__label {
+  font-weight: 600;
+}
+
+.pill-pop__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+}
+
+.magic {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 8px 1px 2px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.magic .tile {
+  border-radius: 50% !important;
+}
+
+.magic-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  padding-top: var(--s-1);
+}
+
+.magic-menu__item {
+  border-radius: var(--r-pill);
+  transition: transform 150ms ease;
+}
+
+.magic-menu__item:hover .magic {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.magic-menu__item:active {
+  transform: scale(0.97);
+}
+
+.param-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.param-editor__row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.param-editor__unit {
+  color: var(--ink-3);
+}
+
+.choice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+}
+
+.choice__option {
+  height: 30px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 600;
+  color: var(--ink-2);
+  transition: background 120ms ease;
+}
+
+.choice__option[aria-checked="true"] {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--ink);
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  height: 28px;
+  padding: 0 var(--s-3);
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--r-field);
+  transition: background 120ms ease;
+}
+
+.marker.is-over {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--ink);
+}
+
+.marker__line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.marker--case .marker__label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.add-action {
+  align-self: center;
+  margin-top: var(--s-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  height: 38px;
+  padding: 0 var(--s-5);
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.inspector {
+  width: 300px;
+  flex-shrink: 0;
+  border-radius: var(--r-card);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  overflow-y: auto;
+}
+
+.inspector__head {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.inspector__head .secondary {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.inspector__title {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.inspector__desc {
+  margin: 0;
+}
+
+.inspector__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.inspector__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.inspector__tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.inspector__tile-btn {
+  border-radius: 10px;
+  padding: 2px;
+  border: 2px solid transparent;
+  transition: transform 150ms ease;
+}
+
+.inspector__tile-btn[aria-checked="true"] {
+  border-color: var(--accent);
+}
+
+.inspector__tile-btn:active {
+  transform: scale(0.94);
+}
+
+.inspector__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.inspector__warn {
+  margin: 0;
+  color: #ffcc80;
+}
