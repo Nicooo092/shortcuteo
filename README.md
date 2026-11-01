@@ -4,9 +4,9 @@ Action shortcuts for Windows. Chain small blocks (set volume, copy text, run Pow
 
 Heavily inspired by the Shortcuts app on iOS, built with Tauri 2 and React.
 
-![Shortcuteo](docs/screenshot.svg)
+![Shortcuteo](docs/screenshot.png)
 
-Early work in progress. Nothing is usable yet, see the [changelog](CHANGELOG.md).
+Early work in progress: you can build and run shortcuts from the editor with about thirty actions. Hotkeys, schedules and other triggers come next, see the [changelog](CHANGELOG.md).
 
 ## Install
 

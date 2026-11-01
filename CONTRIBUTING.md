@@ -9,10 +9,12 @@ npm install
 npm run tauri dev
 ```
 
+Working only on the interface? `npm run dev` opens it in a normal browser at http://localhost:1420 with a fake engine and the real action catalog (`src/bindings/catalog.json`). Dialogs, step highlighting and the editor all work; actions themselves do not run.
+
 Before pushing:
 
 ```sh
-npm run lint && npm run typecheck && npm run format:check
+npm run lint && npm run typecheck && npm run format:check && npm test
 cd src-tauri && cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test
 ```
 
