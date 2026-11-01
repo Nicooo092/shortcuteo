@@ -8,10 +8,7 @@ src-tauri/gen/schemas/
 .DS_Store
 Thumbs.db
 
-# agent tooling, local only
-.claude/
-CLAUDE.md
-CLAUDE.local.md
+# editor and agent tooling, local only
 AGENTS.md
 .cursor/
 .aider*
