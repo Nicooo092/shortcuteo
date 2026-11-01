@@ -30,6 +30,8 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test
+      # cargo test regenerates the ts bindings, they must be committed
+      - run: git diff --exit-code -- ../src/bindings
 
   frontend:
     runs-on: windows-latest
