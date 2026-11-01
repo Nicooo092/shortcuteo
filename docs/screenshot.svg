@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="660" viewBox="0 0 1180 660">
+  <rect width="1180" height="660" rx="16" fill="#0A0A18"/>
+  <circle cx="300" cy="220" r="220" fill="#3A55FF" opacity=".35"/>
+  <circle cx="860" cy="420" r="240" fill="#A53BFF" opacity=".3"/>
+  <text x="590" y="340" fill="#F5F6FB" fill-opacity=".72" font-family="sans-serif" font-size="28" text-anchor="middle">screenshot coming with the ui</text>
+</svg>
