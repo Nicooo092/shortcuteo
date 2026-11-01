@@ -1,0 +1,16 @@
+name: Action request
+description: Suggest a new action or trigger
+labels: [action]
+body:
+  - type: textarea
+    id: action
+    attributes:
+      label: Action
+      description: What should it do? Inputs and output if you have an idea.
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: Windows API
+      description: If you know which API or command would do it, mention it.

@@ -1,0 +1,29 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: shortcut
+    attributes:
+      label: Shortcut
+      description: If a shortcut is involved, attach the exported .shortcuteo file or paste its JSON.
+  - type: input
+    id: version
+    attributes:
+      label: Shortcuteo version
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
